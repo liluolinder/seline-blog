@@ -19,6 +19,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # 动态计算 basePath：用户站 → ''，项目站 → /repo名
+    env:
+      NEXT_PUBLIC_BASE_PATH: ${{ endsWith(github.repository, '.github.io') && '' || format('/{0}', github.event.repository.name) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,37 +35,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Determine base path
-        run: |
-          # 用户/组织站 (username.github.io) → 无前缀
-          # 项目站 (username/repo) → 前缀 /repo
-          REPO="${{ github.repository }}"
-          if echo "$REPO" | grep -q '\.github\.io$'; then
-            echo "用户/组织站，无需前缀"
-            echo "NEXT_PUBLIC_BASE_PATH=" >> $GITHUB_ENV
-          else
-            PREFIX="/${{ github.event.repository.name }}"
-            echo "项目站，前缀: $PREFIX"
-            echo "NEXT_PUBLIC_BASE_PATH=$PREFIX" >> $GITHUB_ENV
-          fi
-
       - name: Build
         run: npm run build
 
-      - name: Fix asset paths in HTML
+      - name: Fix asset paths in built output
         run: |
-          PREFIX="${NEXT_PUBLIC_BASE_PATH}"
+          PREFIX="$NEXT_PUBLIC_BASE_PATH"
           if [ -n "$PREFIX" ]; then
-            # images (HTML)
+            echo "添加前缀: $PREFIX"
+            # HTML 中的 img src / link href
             find out -name '*.html' -exec sed -i "s|src=\"/images/|src=\"${PREFIX}/images/|g" {} +
-            find out -name '*.html' -exec sed -i "s|src='/images/|src='${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|href=\"/images/|href=\"${PREFIX}/images/|g" {} +
-            # fonts & images (CSS + HTML)
-            find out \( -name '*.html' -o -name '*.css' \) -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} +
-            find out \( -name '*.html' -o -name '*.css' \) -exec sed -i "s|url('/fonts/|url('${PREFIX}/fonts/|g" {} +
-            find out \( -name '*.html' -o -name '*.css' \) -exec sed -i 's|url("/images/|url("'${PREFIX}'/images/|g' {} +
-            find out \( -name '*.html' -o -name '*.css' \) -exec sed -i 's|url("/fonts/|url("'${PREFIX}'/fonts/|g' {} +
-            echo "路径修正完成"
+            # CSS/HTML 中的 url()（单引号、双引号、无引号）
+            find out \( -name '*.html' -o -name '*.css' \) \
+              -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} + \
+              -exec sed -i 's|url("/images/|url("'${PREFIX}'/images/|g' {} + \
+              -exec sed -i "s|url(/images/|url(${PREFIX}/images/|g" {} +
+            find out \( -name '*.html' -o -name '*.css' \) \
+              -exec sed -i "s|url('/fonts/|url('${PREFIX}/fonts/|g" {} + \
+              -exec sed -i 's|url("/fonts/|url("'${PREFIX}'/fonts/|g' {} + \
+              -exec sed -i "s|url(/fonts/|url(${PREFIX}/fonts/|g" {} +
+            echo "完成"
+          else
+            echo "无需前缀"
           fi
 
       - name: Setup Pages
