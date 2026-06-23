@@ -112,7 +112,7 @@ export function BackgroundToggle() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="z-50 w-80 liquid-glass rounded-2xl p-5 shadow-xl backdrop-blur-2xl"
+              className="z-50 w-80 liquid-glass rounded-2xl p-5 shadow-xl"
               style={panelStyle}
               onClick={(e) => e.stopPropagation()}
             >
