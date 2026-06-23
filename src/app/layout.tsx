@@ -9,6 +9,9 @@ import { BackgroundToggle } from "@/components/layout/BackgroundToggle";
 export const metadata: Metadata = {
   title: "Seline Blog - 记录技术、生活和思考",
   description: "个人技术博客，分享前端开发、项目经验和生活思考",
+  icons: {
+    icon: '/images/avatar.webp',
+  },
 };
 
 export default function RootLayout({
