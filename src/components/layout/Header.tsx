@@ -21,10 +21,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0">
-            <img src={imgPath('/images/logo.webp')} alt={siteConfig.name} className="h-full w-auto object-contain" />
+            <img src={imgPath(siteConfig.header.logo)} alt={siteConfig.header.name} className="h-full w-auto object-contain" />
           </span>
           <span className="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-            {siteConfig.name}
+            {siteConfig.header.name}
           </span>
         </Link>
 
@@ -32,7 +32,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {siteConfig.nav.map((item) => {
+            {siteConfig.header.nav.map((item) => {
               const isActive = pathname === item.path
               return (
                 <Link
@@ -68,7 +68,7 @@ export function Header() {
           className="mt-2 bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl rounded-2xl shadow-lg border border-blue-100/50 dark:border-blue-900/30 overflow-hidden"
         >
           <nav className="p-2 flex flex-col gap-0.5">
-            {siteConfig.nav.map((item) => {
+            {siteConfig.header.nav.map((item) => {
               const isActive = pathname === item.path
               return (
                 <Link

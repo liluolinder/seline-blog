@@ -13,11 +13,11 @@ export function Footer() {
     <footer className="border-t border-blue-100/50 dark:border-blue-900/30 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
       <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-sm text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} {siteConfig.name}. Built with 💙 & Next.js
+          © {new Date().getFullYear()} {siteConfig.header.name}. Built with 💙 & Next.js
         </div>
         <div className="flex items-center gap-4">
           <a
-            href={siteConfig.social.github}
+            href={siteConfig.sidebar.social.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-blue-500 transition-colors"

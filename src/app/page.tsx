@@ -2,18 +2,11 @@ import { getAllArticles } from '@/lib/articles'
 import { SearchBox, Typewriter } from '@/components/blog'
 import { Card } from '@/components/ui'
 import { FadeIn } from '@/components/animations'
+import { siteConfig } from '@/lib/config'
 
 const imgPath = (path: string) => `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${path}`
 
-const quotes = [
-  '"代码是写给人看的，顺便还能在机器上运行。" — Harold Abelson',
-  '"保持简单，保持愚蠢。" — Unix 哲学',
-  '" Talk is cheap. Show me the code." — Linus Torvalds',
-  '"在编程中，简单和优雅不是可选的，它们是基本要求。"',
-  '"任何傻瓜都能写出计算机能理解的代码，优秀的程序员写出人类能读懂的代码。" — Martin Fowler',
-  '"先让它工作，再让它变快。"',
-  '"调试代码比编写代码难两倍。" — Brian Kernighan',
-]
+const quotes = siteConfig.hero.quotes
 
 export default function HomePage() {
   const allArticles = getAllArticles()
@@ -26,13 +19,13 @@ export default function HomePage() {
           <FadeIn>
             <div className="liquid-glass rounded-3xl p-10 md:p-14 text-center">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center mx-auto mb-6 shadow-xl ring-4 ring-white/60 dark:ring-gray-800/60 overflow-hidden">
-                <img src={imgPath('/images/avatar.webp')} alt="Seline" className="w-full h-full object-cover" />
+                <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
               </div>
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-400 bg-clip-text text-transparent mb-4 tracking-tight leading-[1.2] pb-2">
-                Seline Blog
+                {siteConfig.header.name}
               </h1>
               <p className="text-base text-gray-400 dark:text-gray-500">
-                记录技术、生活和思考
+                {siteConfig.hero.slogan}
               </p>
             </div>
           </FadeIn>
@@ -44,19 +37,19 @@ export default function HomePage() {
             </div>
           </FadeIn>
 
-          {/* 向下提示 */}
+          {/* 向下提示 — 点击滚动到内容区 */}
           <FadeIn delay={0.3}>
-            <div className="animate-bounce text-center pt-2">
+            <a href="#blog-content" className="block animate-bounce text-center pt-2 cursor-pointer">
               <svg className="w-5 h-5 text-gray-300 dark:text-gray-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
-            </div>
+            </a>
           </FadeIn>
         </div>
       </section>
 
       {/* ===== 第二段：博客内容 ===== */}
-      <section className="pb-16">
+      <section id="blog-content" className="pb-16 scroll-mt-20">
         <div className="flex flex-col items-center lg:flex-row lg:items-start justify-center">
           {/* 左侧个人信息卡片 */}
           <div className="hidden lg:block w-[240px] flex-shrink-0 sticky top-28 lg:ml-4 2xl:ml-12">
@@ -64,17 +57,17 @@ export default function HomePage() {
               <Card hover={false} className="!p-5">
                 <div className="flex flex-col items-center">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center text-white text-3xl shadow-lg ring-4 ring-white/60 dark:ring-gray-800/60 overflow-hidden">
-                    <img src={imgPath('/images/avatar.webp')} alt="Seline" className="w-full h-full object-cover" />
+                    <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
                   </div>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-3">Seline</h2>
-                  <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">记录技术、生活和思考</p>
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-3">{siteConfig.sidebar.author}</h2>
+                  <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">{siteConfig.hero.slogan}</p>
                   <div className="w-10 h-px bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full my-3" />
                   <p className="text-sm text-gray-800 dark:text-gray-200 text-center leading-relaxed">
-                    热爱前端开发、开源与一切有趣的技术。
+                    {siteConfig.sidebar.bio}
                   </p>
                   <div className="flex gap-4 mt-3">
-                    <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">GitHub</a>
-                    <a href="mailto:hello@seline-blog.com" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Email</a>
+                    <a href={siteConfig.sidebar.social.github} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">GitHub</a>
+                    <a href={`mailto:${siteConfig.sidebar.social.email}`} className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Email</a>
                   </div>
                 </div>
               </Card>
@@ -117,13 +110,13 @@ export default function HomePage() {
         {/* 移动端个人信息（小屏） */}
         <div className="lg:hidden pt-8 pb-4 text-center">
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center text-white text-2xl shadow-lg overflow-hidden mx-auto">
-            <img src={imgPath('/images/avatar.webp')} alt="Seline" className="w-full h-full object-cover" />
+            <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
           </div>
-          <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-2">Seline</h2>
-          <p className="text-xs text-gray-400 dark:text-gray-500">记录技术、生活和思考</p>
+          <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-2">{siteConfig.sidebar.author}</h2>
+          <p className="text-xs text-gray-400 dark:text-gray-500">{siteConfig.hero.slogan}</p>
           <div className="flex gap-4 justify-center mt-2">
-            <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">GitHub</a>
-            <a href="mailto:hello@seline-blog.com" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">Email</a>
+            <a href={siteConfig.sidebar.social.github} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">GitHub</a>
+            <a href={`mailto:${siteConfig.sidebar.social.email}`} className="text-xs text-gray-400 hover:text-blue-500 transition-colors">Email</a>
           </div>
         </div>
       </section>

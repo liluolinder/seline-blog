@@ -1,28 +1,71 @@
 'use client'
 
 import { useBackground, images } from '@/lib/background-context'
-import { motion } from 'framer-motion'
-import { useRef, useState } from 'react'
-import { Modal } from '@/components/ui/Modal'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import type { BgMode } from '@/lib/background-context'
 
 export function BackgroundToggle() {
-  const { mode, currentIndex, toggleMode, nextImage, prevImage } = useBackground()
+  const { mode, currentIndex, nextImage, prevImage, setMode, opacity, setOpacity, blur, setBlur } = useBackground()
   const constraintsRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const dragCountRef = useRef(0)
+
+  const modes: { key: BgMode; label: string }[] = [
+    { key: 'none', label: '无' },
+    { key: 'single', label: '单图' },
+    { key: 'carousel', label: '轮播' },
+  ]
+
+  // 滚轮 + 手指滑动
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el || !isOpen) return
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      if (e.deltaY > 0) nextImage()
+      else prevImage()
+    }
+
+    let startX = 0
+    const onTouchStart = (e: TouchEvent) => { startX = e.touches[0].clientX }
+    const onTouchEnd = (e: TouchEvent) => {
+      const diff = startX - e.changedTouches[0].clientX
+      if (Math.abs(diff) > 30) {
+        if (diff > 0) nextImage()
+        else prevImage()
+      }
+    }
+
+    el.addEventListener('wheel', onWheel, { passive: false })
+    el.addEventListener('touchstart', onTouchStart, { passive: true })
+    el.addEventListener('touchend', onTouchEnd, { passive: true })
+    return () => {
+      el.removeEventListener('wheel', onWheel)
+      el.removeEventListener('touchstart', onTouchStart)
+      el.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [isOpen, nextImage, prevImage])
 
   return (
     <>
-      {/* 拖拽约束范围 */}
       <div ref={constraintsRef} className="fixed inset-0 pointer-events-none z-40" />
       <motion.div
         drag
         dragConstraints={constraintsRef}
         dragElastic={0.1}
         whileDrag={{ scale: 1.05 }}
+        onDragStart={() => dragCountRef.current++}
+        onDragEnd={() => { setTimeout(() => { dragCountRef.current = 0 }, 100) }}
         className="fixed bottom-6 left-6 z-50 flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/40 dark:bg-gray-800/50 backdrop-blur-xl border border-white/50 dark:border-gray-700/40 shadow-lg cursor-grab active:cursor-grabbing select-none"
       >
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            if (dragCountRef.current > 0) return
+            setIsOpen(true)
+          }}
           className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/10 transition-colors text-lg"
           title="背景设置"
         >
@@ -30,76 +73,137 @@ export function BackgroundToggle() {
         </button>
       </motion.div>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="背景设置">
-        <div className="space-y-6">
-          {/* 模式切换 */}
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">背景模式</span>
-            <button
-              onClick={toggleMode}
-              className={`relative w-12 h-6 rounded-full flex items-center px-0.5 transition-colors ${
-                mode === 'carousel' ? 'bg-blue-500' : 'bg-gray-300 dark:bg-gray-600'
-              }`}
-              title={mode === 'single' ? '切换为轮播模式' : '切换为单图模式'}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <div className="fixed inset-0 z-50" onClick={() => setIsOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 8 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="fixed bottom-20 left-6 z-50 w-80 liquid-glass rounded-2xl p-5 shadow-xl backdrop-blur-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <motion.div
-                layout
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                className={`w-5 h-5 rounded-full bg-white shadow-md ${
-                  mode === 'carousel' ? 'ml-6' : 'ml-0'
-                }`}
-              />
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 dark:text-gray-400 -mt-4">
-            {mode === 'single'
-              ? '当前：单图模式，背景固定显示'
-              : '当前：轮播模式，每 6 秒自动切换'}
-          </p>
+              <h3 className="text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-5">背景设置</h3>
 
-          {/* 分隔线 */}
-          <hr className="border-gray-200 dark:border-gray-700" />
+              <div className="space-y-5">
+                {/* 模式选择 */}
+                <div>
+                  <span className="text-sm text-gray-700 dark:text-gray-300 block mb-2">背景模式</span>
+                  <div className="relative flex rounded-xl bg-gray-100 dark:bg-gray-800 p-0.5">
+                    {modes.map((m) => (
+                      <button
+                        key={m.key}
+                        onClick={() => setMode(m.key)}
+                        className={`relative flex-1 py-1.5 text-sm rounded-[10px] font-medium transition-colors z-10 ${
+                          mode === m.key
+                            ? 'text-gray-900 dark:text-gray-100'
+                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                        }`}
+                      >
+                        {m.label}
+                      </button>
+                    ))}
+                    {/* 滑动指示器 */}
+                    <motion.div
+                      layout
+                      layoutId="bg-mode-pill"
+                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      className="absolute top-0.5 bottom-0.5 rounded-[10px] bg-white dark:bg-gray-700 shadow-sm"
+                      style={{
+                        left: `${(modes.findIndex((m) => m.key === mode) / modes.length) * 100 + 0.5}%`,
+                        width: `${(1 / modes.length) * 100 - 0.5}%`,
+                      }}
+                    />
+                  </div>
+                </div>
 
-          {/* 图片切换 */}
-          <div>
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 block mb-3">背景图片</span>
-            <div className="flex items-center justify-center gap-4">
-              <button
-                onClick={prevImage}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border border-gray-200 dark:border-gray-600"
-                title="上一张"
-              >
-                ◀
-              </button>
+                {/* 不透明度 + 模糊度 + 图片选择 — 无模式时不显示 */}
+                <AnimatePresence>
+                  {mode !== 'none' && (
+                    <motion.div
+                      key="bg-controls"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                      className="overflow-hidden space-y-5"
+                    >
+                      {/* 不透明度 */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-sm text-gray-700 dark:text-gray-300">不透明度</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">{Math.round(opacity * 100)}%</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.05"
+                          value={opacity}
+                          onChange={(e) => setOpacity(parseFloat(e.target.value))}
+                          className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-gray-200 dark:bg-gray-700 accent-blue-500"
+                        />
+                      </div>
 
-              {/* 图片缩略图指示器 */}
-              <div className="flex gap-3">
-                {[0, 1].map((i) => (
-                  <div
-                    key={i}
-                    className={`w-16 h-10 rounded-lg bg-cover bg-center border-2 transition-all ${
-                      i === currentIndex
-                        ? 'border-blue-500 shadow-md scale-110'
-                        : 'border-transparent opacity-60 hover:opacity-80'
-                    }`}
-                    style={{
-                      backgroundImage: `url(${images[i].light})`,
-                    }}
-                  />
-                ))}
+                      {/* 模糊度 */}
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-sm text-gray-700 dark:text-gray-300">模糊度</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">{blur}px</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max="20"
+                          step="1"
+                          value={blur}
+                          onChange={(e) => setBlur(parseInt(e.target.value))}
+                          className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-gray-200 dark:bg-gray-700 accent-blue-500"
+                        />
+                      </div>
+
+                      {/* 图片选择 */}
+                      <div>
+                        <span className="text-sm text-gray-700 dark:text-gray-300 block mb-2">背景图片</span>
+                        <div ref={carouselRef} className="relative h-20 flex items-center justify-center touch-pan-y">
+                          <AnimatePresence mode="popLayout">
+                            {images.map((_, i) => {
+                              const offset = i - currentIndex
+                              if (Math.abs(offset) > 1) return null
+                              return (
+                                <motion.button
+                                  key={i}
+                                  layout
+                                  initial={{ opacity: 0, scale: 0.8, x: offset * 60 }}
+                                  animate={{ opacity: i === currentIndex ? 1 : 0.7, scale: i === currentIndex ? 1.1 : 0.9, x: offset * 60, zIndex: i === currentIndex ? 10 : 0 }}
+                                  exit={{ opacity: 0, scale: 0.8 }}
+                                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                                  onClick={() => {
+                                    const diff = i - currentIndex
+                                    if (diff > 0) nextImage()
+                                    else if (diff < 0) prevImage()
+                                  }}
+                                  className={`absolute h-16 rounded-lg bg-cover bg-center border-2 ${i === currentIndex ? 'w-28 border-blue-500 shadow-lg ring-2 ring-blue-500/20' : 'w-24 border-gray-300 dark:border-gray-500'}`}
+                                  style={{ backgroundImage: `url(${images[i].light})` }}
+                                  title={`背景 ${i + 1}`}
+                                />
+                              )
+                            })}
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              <button
-                onClick={nextImage}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border border-gray-200 dark:border-gray-600"
-                title="下一张"
-              >
-                ▶
-              </button>
-            </div>
-          </div>
-        </div>
-      </Modal>
+              <button onClick={() => setIsOpen(false)} className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-white/40 dark:hover:bg-white/10 transition-colors text-xs">✕</button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }

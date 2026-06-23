@@ -9,23 +9,20 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 text-white text-4xl shadow-xl mb-6">
-                💎
+              <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 overflow-hidden shadow-xl mb-6">
+                <img src={siteConfig.about.avatar} alt={siteConfig.about.title} className="w-full h-full object-cover" />
               </div>
-              <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">关于我</h1>
-              <p className="text-gray-600 dark:text-gray-400">{siteConfig.description}</p>
+              <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">{siteConfig.about.title}</h1>
+              <p className="text-gray-800 dark:text-gray-200">{siteConfig.about.subtitle}</p>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
             <Card hover={false} className="mb-6">
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">👋 嗨，你好！</h2>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                欢迎来到我的个人博客！这里是我记录技术学习、项目开发和生活思考的地方。
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">
-                我热爱前端开发、开源社区和一切有趣的技术。希望通过这个博客能结识更多志同道合的朋友。
-              </p>
+              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">{siteConfig.about.greeting.title}</h2>
+              {siteConfig.about.greeting.paragraphs.map((p, i) => (
+                <p key={i} className="text-gray-700 dark:text-gray-300 leading-relaxed mt-3">{p}</p>
+              ))}
             </Card>
           </FadeIn>
 
@@ -33,7 +30,7 @@ export default function AboutPage() {
             <Card hover={false} className="mb-6">
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">🛠️ 技能</h2>
               <div className="flex flex-wrap gap-2">
-                {['TypeScript', 'React', 'Next.js', 'Vue', 'Node.js', 'Tailwind CSS', 'Git', 'Docker'].map((skill) => (
+                {siteConfig.about.skills.map((skill) => (
                   <span
                     key={skill}
                     className="px-3 py-1.5 rounded-xl text-sm font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
@@ -49,8 +46,8 @@ export default function AboutPage() {
             <Card hover={false}>
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">📬 联系方式</h2>
               <div className="space-y-2 text-gray-700 dark:text-gray-300">
-                <p>GitHub: {siteConfig.social.github}</p>
-                <p>Email: hello@seline-blog.com</p>
+                <p>GitHub: {siteConfig.sidebar.social.github}</p>
+                <p>Email: {siteConfig.sidebar.social.email}</p>
               </div>
             </Card>
           </FadeIn>

@@ -5,12 +5,13 @@ import { Footer } from "@/components/layout/Footer";
 import { BackgroundProvider } from "@/lib/background-context";
 import { BackgroundWrapper } from "@/components/layout/BackgroundWrapper";
 import { BackgroundToggle } from "@/components/layout/BackgroundToggle";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Seline Blog - 记录技术、生活和思考",
-  description: "个人技术博客，分享前端开发、项目经验和生活思考",
+  title: siteConfig.seo.title,
+  description: siteConfig.seo.description,
   icons: {
-    icon: '/images/avatar.webp',
+    icon: siteConfig.seo.favicon,
   },
 };
 
