@@ -24,13 +24,12 @@ jobs:
         run: npm run build
 
       - name: Push to liluolinder.github.io
-        run: |
-          cd out
-          git init
-          git add -A
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git remote add origin https://liluolinder:${{ secrets.DEPLOY_TOKEN }}@github.com/liluolinder/liluolinder.github.io.git
-          git branch -M main
-          git push -f origin main
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          external_repository: liluolinder/liluolinder.github.io
+          publish_dir: ./out
+          publish_branch: main
+          force_orphan: true
+          user_name: github-actions
+          user_email: actions@github.com
