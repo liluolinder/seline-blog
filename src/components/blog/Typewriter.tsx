@@ -41,7 +41,7 @@ export function Typewriter({ quotes }: { quotes: string[] }) {
   }, [charIndex, isDeleting, currentQuote, nextQuote])
 
   return (
-    <p className="text-sm text-gray-400 dark:text-gray-500 italic leading-relaxed min-h-[1.5em]">
+    <p className="text-lg text-gray-800 dark:text-gray-200 italic leading-relaxed min-h-[1.5em]">
       {displayed}
       <span className="animate-pulse ml-0.5 text-blue-400">|</span>
     </p>

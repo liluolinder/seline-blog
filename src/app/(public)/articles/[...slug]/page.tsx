@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getArticleBySlug, getAllArticles } from '@/lib/articles'
 import { buildArticleTree } from '@/lib/collections'
-import { ArticleContent, TocSidebar } from '@/components/blog'
+import { ArticleContent, TocSidebar, MobileArticlePanel } from '@/components/blog'
 import { FadeIn } from '@/components/animations'
 import { ArticleNavSidebar } from './ArticleNavSidebar'
 
@@ -32,13 +32,15 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!article) notFound()
 
+  // 提取合集信息（PC 侧栏 + 手机面板共用）
+  const rootColPath = article.collection ? article.collection.split('/')[0] : null
+  const allArticles = getAllArticles()
+
   return (
     <div className="min-h-screen pb-16">
       <TocSidebar content={article.content} />
 
-      {article.collection && (() => {
-        const rootColPath = article.collection!.split('/')[0]
-        const allArticles = getAllArticles()
+      {article.collection && rootColPath && (() => {
         // 收集以 rootColPath 开头的所有文章
         const treeArts = allArticles.filter(
           (a) => a.collection === rootColPath || (a.collection && a.collection.startsWith(rootColPath + '/'))
@@ -75,6 +77,15 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </FadeIn>
           <FadeIn delay={0.2}><ArticleContent content={article.content} /></FadeIn>
+
+          {/* 手机端：浮动目录 + 底部合集列表 */}
+          <MobileArticlePanel
+            content={article.content}
+            collection={article.collection}
+            rootColPath={rootColPath}
+            allArticles={allArticles}
+            currentSlug={slugStr}
+          />
         </div>
       </div>
     </div>

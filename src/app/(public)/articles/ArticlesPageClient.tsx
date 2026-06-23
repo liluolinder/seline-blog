@@ -154,6 +154,55 @@ export function ArticlesPageClient({
             </div>
           </FadeIn>
 
+          {/* 手机版：合集（和PC一样 liquid-glass 卡片+树形结构，在标签筛上方） */}
+          {collectionTree.length > 0 && (
+            <div className="lg:hidden mb-6">
+              <div className="liquid-glass rounded-2xl p-5 space-y-3 max-h-[50vh] overflow-y-auto">
+                <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3>
+                <div className="w-full h-px bg-blue-100/50 dark:bg-blue-900/30" />
+                <nav className="space-y-0.5">
+                  <Link
+                    href="/articles"
+                    className={`block px-3 py-1.5 text-xs rounded-lg transition-colors font-medium ${
+                      !activeTag ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20'
+                    }`}
+                  >
+                    全部文章
+                  </Link>
+                  {collectionTree.map((node) => (
+                    <ColItem key={node.path} node={node} activeTag={activeTag} expandedCols={expandedCols} toggleCol={toggleCol} />
+                  ))}
+                  {/* 未分类文章 */}
+                  {uncategorized.length > 0 && (
+                    <div>
+                      <button
+                        onClick={() => toggleCol('__uncategorized__')}
+                        className="w-full flex items-center justify-between px-3 py-1.5 text-xs rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors"
+                      >
+                        <span className="flex items-center gap-1">
+                          <span className="text-[10px] w-3">{expandedCols.has('__uncategorized__') ? '▼' : '▶'}</span>
+                          <span>未分类</span>
+                        </span>
+                        <span className="text-[10px] text-gray-400">{uncategorized.length}</span>
+                      </button>
+                      {expandedCols.has('__uncategorized__') && (
+                        <div className="ml-2 space-y-0.5 mt-0.5 border-l border-blue-100/50 dark:border-blue-900/30 pl-2">
+                          {uncategorized.map((a) => (
+                            <Link key={a.slug} href={`/articles/${a.slug}`}
+                              className="block px-3 py-1 text-xs rounded-lg text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors truncate"
+                            >
+                              {a.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </nav>
+              </div>
+            </div>
+          )}
+
           {allTags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-8">
               <Link href="/articles" className={`px-3 py-1.5 rounded-xl text-sm font-medium transition-colors ${!activeTag ? 'bg-blue-500 text-white' : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50'}`}>全部</Link>

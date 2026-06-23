@@ -5,6 +5,9 @@ import type { Article, ArticleMeta } from '@/types'
 
 const articlesDir = path.join(process.cwd(), 'content', 'articles')
 
+// 模块级缓存，避免每次请求都重新扫描磁盘
+let cachedArticles: ArticleMeta[] | null = null
+
 function scanArticles(dir: string, baseSlug: string): ArticleMeta[] {
   const entries = fs.readdirSync(dir, { withFileTypes: true })
   const result: ArticleMeta[] = []
@@ -38,9 +41,15 @@ function scanArticles(dir: string, baseSlug: string): ArticleMeta[] {
 }
 
 export function getAllArticles(): ArticleMeta[] {
-  if (!fs.existsSync(articlesDir)) return []
+  // 缓存命中直接返回
+  if (cachedArticles) return cachedArticles
 
-  const articles = scanArticles(articlesDir, '')
+  if (!fs.existsSync(articlesDir)) {
+    cachedArticles = []
+    return cachedArticles
+  }
+
+  cachedArticles = scanArticles(articlesDir, '')
     .filter((a) => a.published)
     .sort((a, b) => {
       if (a.sort !== undefined && b.sort !== undefined) return a.sort - b.sort
@@ -49,7 +58,7 @@ export function getAllArticles(): ArticleMeta[] {
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
 
-  return articles
+  return cachedArticles
 }
 
 export function getArticleBySlug(slug: string): Article | null {
@@ -96,9 +105,13 @@ export function saveArticle(
 
   const fileContent = matter.stringify(data.content, frontmatter)
   fs.writeFileSync(filePath, fileContent, 'utf-8')
+  // 写入后重置缓存
+  cachedArticles = null
 }
 
 export function deleteArticle(slug: string): void {
   const filePath = path.join(articlesDir, `${slug}.md`)
   if (fs.existsSync(filePath)) fs.unlinkSync(filePath)
+  // 删除后重置缓存
+  cachedArticles = null
 }

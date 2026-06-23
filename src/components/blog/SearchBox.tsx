@@ -66,9 +66,6 @@ export function SearchBox({ articles }: { articles: ArticleMeta[] }) {
             <span className="text-xs">✕</span>
           </button>
         )}
-        <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-700 shrink-0">
-          <span>⌘</span>K
-        </kbd>
       </div>
 
       {/* ===== 搜索模式：显示搜索结果 ===== */}
@@ -107,12 +104,6 @@ export function SearchBox({ articles }: { articles: ArticleMeta[] }) {
                 <span className="w-1 h-5 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full inline-block" />
                 最近文章
               </h2>
-              <a
-                href="/articles"
-                className="text-sm text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors"
-              >
-                查看全部 →
-              </a>
             </div>
           </FadeIn>
 

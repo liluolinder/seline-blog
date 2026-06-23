@@ -24,9 +24,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-          <div className="fixed bottom-6 left-6 z-50">
-            <BackgroundToggle />
-          </div>
+          <BackgroundToggle />
         </BackgroundProvider>
       </body>
     </html>

@@ -437,3 +437,16 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* 手机端面板上滑动画 */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
