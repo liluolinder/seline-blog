@@ -25,6 +25,7 @@ export default function FriendsPage() {
                       <img
                         src={friend.avatar}
                         alt={friend.name}
+                        referrerPolicy="no-referrer"
                         className="w-14 h-14 rounded-full bg-blue-50 dark:bg-blue-900/50 flex-shrink-0 object-cover"
                       />
                       <div className="min-w-0">

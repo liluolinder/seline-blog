@@ -21,7 +21,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0">
-            <img src={imgPath(siteConfig.header.logo)} alt={siteConfig.header.name} className="h-full w-auto object-contain" />
+            <img src={imgPath(siteConfig.header.logo)} alt={siteConfig.header.name} referrerPolicy="no-referrer" className="h-full w-auto object-contain" />
           </span>
           <span className="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
             {siteConfig.header.name}

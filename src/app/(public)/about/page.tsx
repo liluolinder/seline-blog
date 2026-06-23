@@ -10,7 +10,7 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center mb-12">
               <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 overflow-hidden shadow-xl mb-6">
-                <img src={siteConfig.about.avatar} alt={siteConfig.about.title} className="w-full h-full object-cover" />
+                <img src={siteConfig.about.avatar} alt={siteConfig.about.title} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
               <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">{siteConfig.about.title}</h1>
               <p className="text-gray-800 dark:text-gray-200">{siteConfig.about.subtitle}</p>

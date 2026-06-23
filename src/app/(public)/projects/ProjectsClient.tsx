@@ -101,6 +101,7 @@ export function ProjectsClient({ projects }: { projects: Project[] }) {
                             <img
                               src={`/icons/${project.platform.toLowerCase()}.svg`}
                               alt={project.platform}
+                              referrerPolicy="no-referrer"
                               className="w-5 h-5"
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src = '/icons/git.svg'
