@@ -49,14 +49,19 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Fix raw image paths in HTML
+      - name: Fix asset paths in HTML
         run: |
           PREFIX="${NEXT_PUBLIC_BASE_PATH}"
           if [ -n "$PREFIX" ]; then
+            # images
             find out -name '*.html' -exec sed -i "s|src=\"/images/|src=\"${PREFIX}/images/|g" {} +
+            find out -name '*.html' -exec sed -i "s|src='/images/|src='${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|href=\"/images/|href=\"${PREFIX}/images/|g" {} +
-            echo "图片路径修正完成"
+            # fonts
+            find out -name '*.html' -exec sed -i "s|url('/fonts/|url('${PREFIX}/fonts/|g" {} +
+            find out -name '*.html' -exec sed -i "s|src=\"/fonts/|src=\"${PREFIX}/fonts/|g" {} +
+            echo "路径修正完成"
           fi
 
       - name: Setup Pages
