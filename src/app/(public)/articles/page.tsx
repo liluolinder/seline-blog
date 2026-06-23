@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { getAllArticles } from '@/lib/articles'
 import { ArticlesPageClient } from './ArticlesPageClient'
 import type { ArticleMeta } from '@/types'
@@ -40,11 +41,13 @@ export default function ArticlesPage() {
   const collectionTree = Array.from(rootMap.values()).filter((n) => !n.path.includes('/'))
 
   return (
-    <ArticlesPageClient
-      articles={articles}
-      allTags={allTags}
-      collectionTree={collectionTree}
-      uncategorized={uncategorized}
-    />
+    <Suspense fallback={<div className="text-center py-20 text-gray-400">加载中...</div>}>
+      <ArticlesPageClient
+        articles={articles}
+        allTags={allTags}
+        collectionTree={collectionTree}
+        uncategorized={uncategorized}
+      />
+    </Suspense>
   )
 }
