@@ -1,27 +1,12 @@
-name: Deploy to GitHub Pages
+name: Build & Push to liluolinder.github.io
 
 on:
   push:
     branches: [main]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
-  build-and-deploy:
+  build-and-push:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    # 动态计算 basePath：用户站 → ''，项目站 → /repo名
-    env:
-      NEXT_PUBLIC_BASE_PATH: ${{ endsWith(github.repository, '.github.io') && '' || format('/{0}', github.event.repository.name) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,44 +23,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Fix asset paths in built output
+      - name: Push to liluolinder.github.io
         run: |
-          PREFIX="$NEXT_PUBLIC_BASE_PATH"
-          if [ -n "$PREFIX" ]; then
-            echo "添加前缀: $PREFIX"
-            # 1) HTML 静态属性
-            find out -name '*.html' -exec sed -i "s|src=\"/images/|src=\"${PREFIX}/images/|g" {} +
-            find out -name '*.html' -exec sed -i "s|href=\"/images/|href=\"${PREFIX}/images/|g" {} +
-            # 2) JS/JSON 中的路径 ("src":"images/  \"src\":\"images/)
-            find out -name '*.html' -exec sed -i 's|"src":"/images/|"src":"'${PREFIX}'/images/|g' {} +
-            find out -name '*.html' -exec sed -i 's|"href":"/images/|"href":"'${PREFIX}'/images/|g' {} +
-            find out -name '*.html' -exec sed -i 's|\\"src\\":\\"/images/|\\"src\\":\\"'${PREFIX}'/images/|g' {} +
-            find out -name '*.html' -exec sed -i 's|\\"href\\":\\"/images/|\\"href\\":\\"'${PREFIX}'/images/|g' {} +
-            # 3) RSC 预加载提示 :HL["/images/
-            find out -name '*.html' -exec sed -i 's|:HL\["/images/|:HL["'${PREFIX}'/images/|g' {} +
-            find out -name '*.html' -exec sed -i 's|:HL\["/fonts/|:HL["'${PREFIX}'/fonts/|g' {} +
-            # 4) CSS url()（单引号、双引号、无引号）
-            find out \( -name '*.html' -o -name '*.css' \) \
-              -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} + \
-              -exec sed -i 's|url("/images/|url("'${PREFIX}'/images/|g' {} + \
-              -exec sed -i "s|url(/images/|url(${PREFIX}/images/|g" {} +
-            find out \( -name '*.html' -o -name '*.css' \) \
-              -exec sed -i "s|url('/fonts/|url('${PREFIX}/fonts/|g" {} + \
-              -exec sed -i 's|url("/fonts/|url("'${PREFIX}'/fonts/|g' {} + \
-              -exec sed -i "s|url(/fonts/|url(${PREFIX}/fonts/|g" {} +
-            echo "完成"
-          else
-            echo "无需前缀"
-          fi
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          cd out
+          git init
+          git add -A
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git remote add origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/liluolinder/liluolinder.github.io.git
+          git branch -M main
+          git push -f origin main
