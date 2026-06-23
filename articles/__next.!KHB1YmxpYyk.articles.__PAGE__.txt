@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:"$Sreact.suspense"
+3:I[6036,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/0g4hqlry50nw8.js","/_next/static/chunks/3-g7ilvuc9sl5.js"],"ArticlesPageClient"]
+4:I[97367,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+0:{"rsc":["$","$1","c",{"children":[["$","$2",null,{"fallback":["$","div",null,{"className":"text-center py-20 text-gray-400","children":"加载中..."}],"children":["$","$L3",null,{"articles":[{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"sort":1,"published":true}],"allTags":["Seline","Next.js","博客"],"collectionTree":[],"uncategorized":["$0:rsc:props:children:0:props:children:props:articles:0"]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/0g4hqlry50nw8.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3-g7ilvuc9sl5.js","async":true}]],["$","$L4",null,{"children":["$","$2",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"bj2pydQATI5XEv1zh-cE5"}
+5:null

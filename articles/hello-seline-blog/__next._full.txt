@@ -1,0 +1,325 @@
+1:"$Sreact.fragment"
+2:I[59188,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundProvider"]
+3:I[57715,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundWrapper"]
+4:I[3374,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Header"]
+5:I[39756,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+6:I[37457,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default"]
+7:I[58234,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"Footer"]
+8:I[46133,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"BackgroundToggle"]
+a:I[97367,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+e:I[97367,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"ViewportBoundary"]
+10:I[97367,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"MetadataBoundary"]
+12:I[68027,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"default",1]
+:HL["/_next/static/chunks/2lvruprkj_xy9.css","style"]
+:HC["/",""]
+0:{"P":null,"c":["","articles","hello-seline-blog"],"q":"","i":false,"f":[[["",{"children":["(public)",{"children":["articles",{"children":[["slug","hello-seline-blog","c",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2lvruprkj_xy9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3siqhaq7xgu_h.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3oax6b5zaxt_z.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/0jubty45h__ir.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":["$","body",null,{"className":"min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L7",null,{}],["$","$L8",null,{}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:f:0:1:0:props:children:1:props:children:props:children:props:children:2:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L9",[["$","script","script-0",{"src":"/_next/static/chunks/1gtjbot4ps5zt.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3-g7ilvuc9sl5.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],{},null,false,null]},null,false,"$@d"]},null,false,"$@d"]},null,false,"$@d"]},null,false,null],["$","$1","h",{"children":[null,["$","$Le",null,{"children":"$Lf"}],["$","div",null,{"hidden":true,"children":["$","$L10",null,{"children":["$","$b",null,{"name":"Next.Metadata","children":"$L11"}]}]}],null]}],false]],"m":"$undefined","G":["$12",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2lvruprkj_xy9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"bj2pydQATI5XEv1zh-cE5"}
+13:[]
+d:"$W13"
+14:I[23597,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3-g7ilvuc9sl5.js"],"TocSidebar"]
+16:I[22016,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3-g7ilvuc9sl5.js"],""]
+17:I[96438,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3-g7ilvuc9sl5.js"],"ArticleContent"]
+15:T805,
+# 🌟 欢迎来到 Seline Blog
+
+一个开源的 **个人博客**，基于 **Next.js** 构建，拥有现代化 UI 和丰富的功能特性。
+
+---
+
+## ✨ 特色功能
+
+### 📝 Markdown 文章系统
+
+支持完整的 Markdown 编写体验，通过 `gray-matter` 解析 frontmatter 元数据，支持标签、合集、排序、封面图等配置。
+
+```markdown
+---
+title: 文章标题
+description: 文章描述
+date: '2024-01-15'
+tags: ["Next.js", "Web"]
+published: true
+cover: ''
+sort: 1
+---
+```
+
+### 🎨 多种提示框样式
+
+> [!NOTE]
+> 笔记信息提示框
+
+> [!TIP]
+> 小技巧提示框
+
+> [!WARNING]
+> 警告信息提示框
+
+> [!CAUTION]
+> 危险操作提示框
+
+> [!IMPORTANT]
+> 重要说明提示框
+
+### 🧮 数学公式支持
+
+行内公式：$E = mc^2$
+
+独立公式：
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+### 📂 文章合集功能
+
+支持将文章按目录归类为合集，自动生成合集导航侧边栏，方便读者按系列阅读。
+
+### 🔗 友链 & 项目展示
+
+内置友链管理和项目展示页面，支持按平台筛选和搜索，方便展示你的开源项目和朋友们。
+
+### 🌙 主题风格
+
+- 渐变背景主题
+- 平滑动画过渡（基于 Framer Motion）
+- 自适应明暗风格
+- 响应式布局，移动端友好
+
+### 🎵 音乐播放器
+
+文章内可嵌入音乐播放组件，支持自定义音乐链接。
+
+---
+
+## 🚀 技术栈
+
+| 技术 | 用途 |
+|------|------|
+| **Next.js 16** | 框架 |
+| **TypeScript** | 类型安全 |
+| **Tailwind CSS 4** | 样式 |
+| **Framer Motion** | 动画 |
+| **React Markdown** | Markdown 渲染 |
+| **KaTeX** | 数学公式 |
+| **Highlight.js** | 代码高亮 |
+
+---
+
+## 📖 开始使用
+
+1. 在 `content/articles/` 下创建 `.md` 文件写文章
+2. 在 `content/friends/friends.json` 添加友链
+3. 在 `content/projects/projects.json` 添加项目
+4. 自定义 `src/lib/config.ts` 修改站点配置
+
+---
+
+> 💡 更多详情请查看项目文档或源码，欢迎 Star 和贡献！
+
+感谢你的访问，祝你使用愉快！🌟
+18:T805,
+# 🌟 欢迎来到 Seline Blog
+
+一个开源的 **个人博客**，基于 **Next.js** 构建，拥有现代化 UI 和丰富的功能特性。
+
+---
+
+## ✨ 特色功能
+
+### 📝 Markdown 文章系统
+
+支持完整的 Markdown 编写体验，通过 `gray-matter` 解析 frontmatter 元数据，支持标签、合集、排序、封面图等配置。
+
+```markdown
+---
+title: 文章标题
+description: 文章描述
+date: '2024-01-15'
+tags: ["Next.js", "Web"]
+published: true
+cover: ''
+sort: 1
+---
+```
+
+### 🎨 多种提示框样式
+
+> [!NOTE]
+> 笔记信息提示框
+
+> [!TIP]
+> 小技巧提示框
+
+> [!WARNING]
+> 警告信息提示框
+
+> [!CAUTION]
+> 危险操作提示框
+
+> [!IMPORTANT]
+> 重要说明提示框
+
+### 🧮 数学公式支持
+
+行内公式：$E = mc^2$
+
+独立公式：
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+### 📂 文章合集功能
+
+支持将文章按目录归类为合集，自动生成合集导航侧边栏，方便读者按系列阅读。
+
+### 🔗 友链 & 项目展示
+
+内置友链管理和项目展示页面，支持按平台筛选和搜索，方便展示你的开源项目和朋友们。
+
+### 🌙 主题风格
+
+- 渐变背景主题
+- 平滑动画过渡（基于 Framer Motion）
+- 自适应明暗风格
+- 响应式布局，移动端友好
+
+### 🎵 音乐播放器
+
+文章内可嵌入音乐播放组件，支持自定义音乐链接。
+
+---
+
+## 🚀 技术栈
+
+| 技术 | 用途 |
+|------|------|
+| **Next.js 16** | 框架 |
+| **TypeScript** | 类型安全 |
+| **Tailwind CSS 4** | 样式 |
+| **Framer Motion** | 动画 |
+| **React Markdown** | Markdown 渲染 |
+| **KaTeX** | 数学公式 |
+| **Highlight.js** | 代码高亮 |
+
+---
+
+## 📖 开始使用
+
+1. 在 `content/articles/` 下创建 `.md` 文件写文章
+2. 在 `content/friends/friends.json` 添加友链
+3. 在 `content/projects/projects.json` 添加项目
+4. 自定义 `src/lib/config.ts` 修改站点配置
+
+---
+
+> 💡 更多详情请查看项目文档或源码，欢迎 Star 和贡献！
+
+感谢你的访问，祝你使用愉快！🌟
+9:["$","div",null,{"className":"min-h-screen pb-16","children":[["$","$L14",null,{"content":"$15"}],"$undefined",["$","div",null,{"className":"lg:pl-[320px] xl:pr-[280px] pt-28 pb-16 px-4","children":["$","div",null,{"className":"max-w-4xl mx-auto","children":[["$","$L16",null,{"href":"/articles","className":"inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors","children":"← 返回文章列表"}],["$","div",null,{"className":"mb-8","children":[["$","div",null,{"className":"flex items-center gap-3 mb-3","children":[["$","span",null,{"className":"text-sm text-gray-600 dark:text-gray-400","children":"2024-01-15"}],["$","div",null,{"className":"flex gap-1.5","children":[["$","span","Seline",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Seline"]}],["$","span","Next.js",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","Next.js"]}],["$","span","博客",{"className":"text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400","children":["#","博客"]}]]}]]}],["$","h1",null,{"className":"text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight","children":"Hello Seline Blog"}],["$","p",null,{"className":"mt-3 text-gray-700 dark:text-gray-300 text-lg","children":"欢迎来到 Seline Blog，一个开源的个人博客！"}]]}],["$","$L17",null,{"content":"$18"}],"$L19"]}]}]]}]
+1a:I[28093,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js","/_next/static/chunks/1gtjbot4ps5zt.js","/_next/static/chunks/3-g7ilvuc9sl5.js"],"MobileArticlePanel"]
+1b:T805,
+# 🌟 欢迎来到 Seline Blog
+
+一个开源的 **个人博客**，基于 **Next.js** 构建，拥有现代化 UI 和丰富的功能特性。
+
+---
+
+## ✨ 特色功能
+
+### 📝 Markdown 文章系统
+
+支持完整的 Markdown 编写体验，通过 `gray-matter` 解析 frontmatter 元数据，支持标签、合集、排序、封面图等配置。
+
+```markdown
+---
+title: 文章标题
+description: 文章描述
+date: '2024-01-15'
+tags: ["Next.js", "Web"]
+published: true
+cover: ''
+sort: 1
+---
+```
+
+### 🎨 多种提示框样式
+
+> [!NOTE]
+> 笔记信息提示框
+
+> [!TIP]
+> 小技巧提示框
+
+> [!WARNING]
+> 警告信息提示框
+
+> [!CAUTION]
+> 危险操作提示框
+
+> [!IMPORTANT]
+> 重要说明提示框
+
+### 🧮 数学公式支持
+
+行内公式：$E = mc^2$
+
+独立公式：
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+### 📂 文章合集功能
+
+支持将文章按目录归类为合集，自动生成合集导航侧边栏，方便读者按系列阅读。
+
+### 🔗 友链 & 项目展示
+
+内置友链管理和项目展示页面，支持按平台筛选和搜索，方便展示你的开源项目和朋友们。
+
+### 🌙 主题风格
+
+- 渐变背景主题
+- 平滑动画过渡（基于 Framer Motion）
+- 自适应明暗风格
+- 响应式布局，移动端友好
+
+### 🎵 音乐播放器
+
+文章内可嵌入音乐播放组件，支持自定义音乐链接。
+
+---
+
+## 🚀 技术栈
+
+| 技术 | 用途 |
+|------|------|
+| **Next.js 16** | 框架 |
+| **TypeScript** | 类型安全 |
+| **Tailwind CSS 4** | 样式 |
+| **Framer Motion** | 动画 |
+| **React Markdown** | Markdown 渲染 |
+| **KaTeX** | 数学公式 |
+| **Highlight.js** | 代码高亮 |
+
+---
+
+## 📖 开始使用
+
+1. 在 `content/articles/` 下创建 `.md` 文件写文章
+2. 在 `content/friends/friends.json` 添加友链
+3. 在 `content/projects/projects.json` 添加项目
+4. 自定义 `src/lib/config.ts` 修改站点配置
+
+---
+
+> 💡 更多详情请查看项目文档或源码，欢迎 Star 和贡献！
+
+感谢你的访问，祝你使用愉快！🌟
+19:["$","$L1a",null,{"content":"$1b","collection":"$undefined","rootColPath":null,"allArticles":[{"slug":"hello-seline-blog","title":"Hello Seline Blog","description":"欢迎来到 Seline Blog，一个开源的个人博客！","date":"2024-01-15","tags":["Seline","Next.js","博客"],"collection":"$undefined","sort":1,"cover":"$undefined","published":true}],"currentSlug":"hello-seline-blog"}]
+f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1c:I[27201,["/_next/static/chunks/3siqhaq7xgu_h.js","/_next/static/chunks/3oax6b5zaxt_z.js","/_next/static/chunks/0jubty45h__ir.js"],"IconMark"]
+c:null
+11:[["$","title","0",{"children":"Hello Seline Blog | Seline Blog"}],["$","meta","1",{"name":"description","content":"欢迎来到 Seline Blog，一个开源的个人博客！"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.2vob68tjqpejf.ico","sizes":"256x256","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"/images/avatar.webp"}],["$","$L1c","4",{}]]
