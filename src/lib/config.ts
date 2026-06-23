@@ -5,7 +5,7 @@ export const siteConfig = {
   url: 'https://your-username.github.io',
   basePath: '',
   author: 'Seline',
-  avatar: '/images/avatar.png',
+  avatar: '/seline-blog/images/avatar.png',
   social: {
     github: 'https://github.com/your-username',
     twitter: 'https://twitter.com/your-username',

@@ -19,7 +19,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0">
-            <img src="/images/logo.png" alt={siteConfig.name} className="h-full w-auto object-contain" />
+            <img src="/seline-blog/images/logo.png" alt={siteConfig.name} className="h-full w-auto object-contain" />
           </span>
           <span className="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
             {siteConfig.name}
