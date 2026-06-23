@@ -34,5 +34,6 @@ jobs:
           publish_dir: ./out
           publish_branch: main
           force_orphan: true
+          cname: blog.liluolinder.top
           user_name: github-actions
           user_email: actions@github.com
