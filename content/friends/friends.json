@@ -1,14 +1,26 @@
 [
   {
+    "name": "Liquid Studio",
+    "url": "https://gitcode.com/LiquidStudio",
+    "avatar": "https://cdn-img.gitcode.com/cd/ee/053cde9ee58c0346e86cff4eaeb9283be1a4a71a7ed72f2623eda21b86807578.jpg",
+    "description": "几个鸿蒙独立开发者走到了一起，于是有了LiqD"
+  },
+  {
     "name": "ErBW_s",
     "url": "https://erbws.github.io",
     "avatar": "https://erbws.github.io/logo.png",
     "description": "ErBW_s Live and Learn"
   },
-    {
+  {
     "name": "FrankHan",
     "url": "https://github.com/FrankHan052176",
     "avatar": "https://avatars.githubusercontent.com/u/48244729",
     "description": "FrankHan's github"
+  },
+  {
+    "name": "乐得自在",
+    "url": "https://copur.xyz/",
+    "avatar": "https://copur.xyz/image/avatar.webp",
+    "description": "乐得自在的小破站"
   }
 ]

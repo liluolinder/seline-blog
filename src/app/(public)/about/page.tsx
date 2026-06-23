@@ -46,8 +46,9 @@ export default function AboutPage() {
             <Card hover={false}>
               <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">📬 联系方式</h2>
               <div className="space-y-2 text-gray-700 dark:text-gray-300">
-                <p>GitHub: {siteConfig.sidebar.social.github}</p>
-                <p>Email: {siteConfig.sidebar.social.email}</p>
+                {siteConfig.sidebar.social.map((s) => (
+                  <p key={s.name}>{s.name}: {s.url}</p>
+                ))}
               </div>
             </Card>
           </FadeIn>

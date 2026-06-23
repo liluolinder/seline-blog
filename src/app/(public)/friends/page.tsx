@@ -3,7 +3,7 @@ import { Card } from '@/components/ui'
 import { FadeIn } from '@/components/animations'
 
 export default function FriendsPage() {
-  const friends = getAllFriends()
+  const friends = getAllFriends().sort((a, b) => a.name.localeCompare(b.name))
 
   return (
     <div className="min-h-screen pb-16">

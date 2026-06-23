@@ -2,17 +2,14 @@
 // 例如 '/images/avatar.webp' 对应 public/images/avatar.webp
 
 export const siteConfig = {
-  // ─── 浏览器标签页 ───
-  seo: {
-    title: 'Seline Blog - 记录技术、生活和思考',
-    description: '个人技术博客，分享前端开发、项目经验和生活思考',
-    favicon: '/images/avatar.webp',
-  },
 
   // ─── 顶栏 ───
   header: {
+    // 左上角 Logo 图片
     logo: '/images/logo.webp',
-    name: 'Seline Blog',
+    // 站点名称（顶栏、页脚）
+    name: '琉离铟落的小窝',
+    // 导航菜单
     nav: [
       { name: '首页', path: '/' },
       { name: '文章', path: '/articles' },
@@ -23,13 +20,27 @@ export const siteConfig = {
     ],
   },
 
-  // ─── 首页品牌区 ───
+  // ─── 浏览器标签页 ───
+  seo: {
+    // 浏览器标签页标题
+    title: '琉离铟落的小窝',
+    // SEO 描述
+    description: '个人技术博客，分享前端开发、项目经验和生活思考',
+    // 标签页图标
+    favicon: '/images/avatar.webp',
+  },
+
+  // ─── 欢迎区（首页第一屏） ───
   hero: {
+    // 大标题
+    title: '琉离铟落的小窝',
+    // 头像
     avatar: '/images/avatar.webp',
+    // 标题下方标语
     slogan: '记录技术、生活和思考',
+    // 打字机循环显示的名言
     quotes: [
-      '"代码是写给人看的，顺便还能在机器上运行。" — Harold Abelson',
-      '"保持简单，保持愚蠢。" — Unix 哲学',
+      '"生如Ark之绚烂，死如仓颉之静美"',
       '" Talk is cheap. Show me the code." — Linus Torvalds',
       '"在编程中，简单和优雅不是可选的，它们是基本要求。"',
       '"任何傻瓜都能写出计算机能理解的代码，优秀的程序员写出人类能读懂的代码。" — Martin Fowler',
@@ -40,25 +51,37 @@ export const siteConfig = {
 
   // ─── 侧边栏个人信息 ───
   sidebar: {
-    author: 'Seline',
-    bio: '热爱前端开发、开源与一切有趣的技术。',
-    social: {
-      github: 'https://github.com/liluolinder',
-      email: 'hello@seline-blog.com',
-    },
+    // 作者名称
+    author: '琉离铟落linderSeline',
+    // 作者下方标语
+    slogan: '喵喵喵',
+    // 个人简介
+    bio: '热爱开发、开源与一切有趣的技术。',
+    // 社交链接（自动渲染到侧边栏、页脚、关于页，有什么平台自己按格式加）
+    social: [
+      { name: 'GitHub', url: 'https://github.com/liluolinder' },
+      { name: 'GitCode', url: 'https://gitcode.com/liluolinder' },
+      { name: 'Email', url: 'mailto:liluolinder@qq.com' },
+    ],
   },
 
   // ─── 背景图 ───
   backgrounds: {
+    // 浅色模式图片（与 dark 同索引配对）
     light: ['/images/bg1.webp', '/images/bg2.webp', '/images/bg2.webp'],
+    // 深色模式图片（与 light 同索引配对）
     dark: ['/images/bg2.webp', '/images/bg1.webp','/images/bg2.webp'],
   },
 
   // ─── 关于页 ───
   about: {
+    // 页面标题
     title: '关于我',
+    // 标题下方副标题
     subtitle: '个人技术博客，分享前端开发、项目经验和生活思考',
+    // 页面顶部头像
     avatar: '/images/avatar.webp',
+    // 问候区
     greeting: {
       title: '👋 嗨，你好！',
       paragraphs: [
@@ -66,6 +89,7 @@ export const siteConfig = {
         '我热爱前端开发、开源社区和一切有趣的技术。希望通过这个博客能结识更多志同道合的朋友。',
       ],
     },
-    skills: ['TypeScript', 'React', 'Next.js', 'Vue', 'Node.js', 'Tailwind CSS', 'Git', 'Docker'],
+    // 技能列表
+    skills: ['Cangjie', 'ArkTs', 'JAVA', 'C/C++'],
   },
 }

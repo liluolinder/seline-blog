@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body className="min-h-screen text-gray-900 dark:text-gray-100 font-sans">
+      <body className="min-h-screen flex flex-col text-gray-900 dark:text-gray-100 font-sans">
         <BackgroundProvider>
           <BackgroundWrapper />
           <Header />

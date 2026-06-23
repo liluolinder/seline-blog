@@ -22,7 +22,7 @@ export default function HomePage() {
                 <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
               </div>
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-400 bg-clip-text text-transparent mb-4 tracking-tight leading-[1.2] pb-2">
-                {siteConfig.header.name}
+                {siteConfig.hero.title}
               </h1>
               <p className="text-base text-gray-400 dark:text-gray-500">
                 {siteConfig.hero.slogan}
@@ -60,14 +60,15 @@ export default function HomePage() {
                     <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
                   </div>
                   <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-3">{siteConfig.sidebar.author}</h2>
-                  <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">{siteConfig.hero.slogan}</p>
+                  <p className="text-sm text-gray-800 dark:text-gray-200 mt-1">{siteConfig.sidebar.slogan}</p>
                   <div className="w-10 h-px bg-gradient-to-r from-blue-300 to-cyan-300 rounded-full my-3" />
                   <p className="text-sm text-gray-800 dark:text-gray-200 text-center leading-relaxed">
                     {siteConfig.sidebar.bio}
                   </p>
                   <div className="flex gap-4 mt-3">
-                    <a href={siteConfig.sidebar.social.github} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">GitHub</a>
-                    <a href={`mailto:${siteConfig.sidebar.social.email}`} className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Email</a>
+                    {siteConfig.sidebar.social.map((s) => (
+                      <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">{s.name}</a>
+                    ))}
                   </div>
                 </div>
               </Card>
@@ -113,10 +114,11 @@ export default function HomePage() {
             <img src={imgPath(siteConfig.hero.avatar)} alt={siteConfig.sidebar.author} className="w-full h-full object-cover" />
           </div>
           <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-2">{siteConfig.sidebar.author}</h2>
-          <p className="text-xs text-gray-400 dark:text-gray-500">{siteConfig.hero.slogan}</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500">{siteConfig.sidebar.slogan}</p>
           <div className="flex gap-4 justify-center mt-2">
-            <a href={siteConfig.sidebar.social.github} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">GitHub</a>
-            <a href={`mailto:${siteConfig.sidebar.social.email}`} className="text-xs text-gray-400 hover:text-blue-500 transition-colors">Email</a>
+            {siteConfig.sidebar.social.map((s) => (
+              <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">{s.name}</a>
+            ))}
           </div>
         </div>
       </section>

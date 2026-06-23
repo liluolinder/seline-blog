@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getArticleBySlug, getAllArticles } from '@/lib/articles'
 import { buildArticleTree } from '@/lib/collections'
 import { ArticleContent, TocSidebar, MobileArticlePanel } from '@/components/blog'
-import { FadeIn } from '@/components/animations'
 import { ArticleNavSidebar } from './ArticleNavSidebar'
 
 interface Props {
@@ -63,8 +62,7 @@ export default async function ArticlePage({ params }: Props) {
 
       <div className="lg:pl-[320px] xl:pr-[280px] pt-28 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
-          <FadeIn>
-            <Link href="/articles" className="inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors">← 返回文章列表</Link>
+          <Link href="/articles" className="inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors">← 返回文章列表</Link>
             <div className="mb-8">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-sm text-gray-600 dark:text-gray-400">{article.date}</span>
@@ -75,8 +73,7 @@ export default async function ArticlePage({ params }: Props) {
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200 leading-tight">{article.title}</h1>
               <p className="mt-3 text-gray-700 dark:text-gray-300 text-lg">{article.description}</p>
             </div>
-          </FadeIn>
-          <FadeIn delay={0.2}><ArticleContent content={article.content} /></FadeIn>
+          <ArticleContent content={article.content} />
 
           {/* 手机端：浮动目录 + 底部合集列表 */}
           <MobileArticlePanel
