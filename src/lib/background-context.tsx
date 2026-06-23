@@ -15,9 +15,11 @@ interface BackgroundState {
   prevImage: () => void
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 const images = [
-  { light: '/images/bg1.webp', dark: '/images/bg2.webp' },
-  { light: '/images/bg2.webp', dark: '/images/bg1.webp' },
+  { light: `${basePath}/images/bg1.webp`, dark: `${basePath}/images/bg2.webp` },
+  { light: `${basePath}/images/bg2.webp`, dark: `${basePath}/images/bg1.webp` },
 ]
 
 const BackgroundContext = createContext<BackgroundState | null>(null)
