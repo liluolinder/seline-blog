@@ -5,8 +5,6 @@ import { Footer } from "@/components/layout/Footer";
 import { BackgroundProvider } from "@/lib/background-context";
 import { BackgroundWrapper } from "@/components/layout/BackgroundWrapper";
 import { BackgroundToggle } from "@/components/layout/BackgroundToggle";
-import { ClickParticles } from "@/components/animations/ClickParticles";
-import { SnowEffect } from "@/components/animations/SnowEffect";
 
 export const metadata: Metadata = {
   title: "Seline Blog - 记录技术、生活和思考",
@@ -23,11 +21,9 @@ export default function RootLayout({
       <body className="min-h-screen text-gray-900 dark:text-gray-100 font-sans">
         <BackgroundProvider>
           <BackgroundWrapper />
-          <SnowEffect />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
-          <ClickParticles />
           <div className="fixed bottom-6 left-6 z-50">
             <BackgroundToggle />
           </div>
