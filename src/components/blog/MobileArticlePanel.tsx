@@ -36,9 +36,10 @@ interface TreeNode {
   articles: ArticleMeta[]
 }
 
-function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
+function buildTree(articles: ArticleMeta[], rootPath: string): { children: TreeNode[]; rootArticles: ArticleMeta[] } {
   const map = new Map<string, TreeNode>()
-  const roots: TreeNode[] = []
+  const children: TreeNode[] = []
+  const rootArticles: ArticleMeta[] = []
 
   for (const a of articles) {
     const colPath = a.collection || rootPath
@@ -46,6 +47,12 @@ function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
     const idx = segments.indexOf(rootPath)
     if (idx === -1) continue
     const relSegments = segments.slice(idx + 1)
+
+    // 直接属于根目录的文章
+    if (relSegments.length === 0) {
+      rootArticles.push(a)
+      continue
+    }
 
     let currentPath = rootPath
     let parent: TreeNode | null = null
@@ -56,14 +63,14 @@ function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
         node = { name: seg, path: currentPath, children: [], articles: [] }
         map.set(currentPath, node)
         if (parent) parent.children.push(node)
-        else roots.push(node)
+        else children.push(node)
       }
       parent = node
     }
     if (parent) parent.articles.push(a)
   }
 
-  return roots
+  return { children, rootArticles }
 }
 
 function NavNode({ node, depth, currentSlug, expandedSet, onToggle }: {
@@ -167,7 +174,7 @@ export function MobileArticlePanel({
   }, [allArticles, rootColPath])
 
   const tree = useMemo(() => {
-    if (!rootColPath) return []
+    if (!rootColPath) return { children: [] as TreeNode[], rootArticles: [] as ArticleMeta[] }
     return buildTree(treeArts, rootColPath)
   }, [treeArts, rootColPath])
 
@@ -251,7 +258,7 @@ export function MobileArticlePanel({
                 </span>
                 <span className="text-[10px] text-gray-400">{treeArts.length}</span>
               </button>
-              {expandedSet.has(rootColPath) && tree.map((node) => (
+              {expandedSet.has(rootColPath) && tree.children.map((node) => (
                 <NavNode key={node.path} node={node} depth={1} currentSlug={currentSlug} expandedSet={expandedSet} onToggle={onToggle} />
               ))}
             </nav>

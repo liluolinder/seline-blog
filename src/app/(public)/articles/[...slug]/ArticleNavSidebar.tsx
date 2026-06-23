@@ -11,9 +11,10 @@ interface TreeNode {
   articles: ArticleMeta[]
 }
 
-function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
+function buildTree(articles: ArticleMeta[], rootPath: string): { children: TreeNode[]; rootArticles: ArticleMeta[] } {
   const map = new Map<string, TreeNode>()
-  const roots: TreeNode[] = []
+  const children: TreeNode[] = []
+  const rootArticles: ArticleMeta[] = []
 
   for (const a of articles) {
     const colPath = a.collection || rootPath
@@ -21,6 +22,12 @@ function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
     const idx = segments.indexOf(rootPath)
     if (idx === -1) continue
     const relSegments = segments.slice(idx + 1)
+
+    // 直接属于根目录的文章（没有子级路径）
+    if (relSegments.length === 0) {
+      rootArticles.push(a)
+      continue
+    }
 
     let currentPath = rootPath
     let parent: TreeNode | null = null
@@ -31,14 +38,14 @@ function buildTree(articles: ArticleMeta[], rootPath: string): TreeNode[] {
         node = { name: seg, path: currentPath, children: [], articles: [] }
         map.set(currentPath, node)
         if (parent) parent.children.push(node)
-        else roots.push(node)
+        else children.push(node)
       }
       parent = node
     }
     if (parent) parent.articles.push(a)
   }
 
-  return roots
+  return { children, rootArticles }
 }
 
 function NavNode({ node, depth, currentSlug, expandedSet, onToggle }: {
@@ -113,7 +120,7 @@ export function ArticleNavSidebar({ rootPath, rootName, articles, currentSlug }:
 
   const [expandedSet, setExpandedSet] = useState<Set<string>>(defaultExpanded)
 
-  const tree = useMemo(() => buildTree(articles, rootPath), [articles, rootPath])
+  const { children: tree, rootArticles } = useMemo(() => buildTree(articles, rootPath), [articles, rootPath])
 
   const onToggle = (p: string) => {
     setExpandedSet((prev) => {
@@ -137,9 +144,21 @@ export function ArticleNavSidebar({ rootPath, rootName, articles, currentSlug }:
         </span>
         <span className="text-[10px] text-gray-400">{articles.length}</span>
       </button>
-      {expandedSet.has(rootPath) && tree.map((node) => (
-        <NavNode key={node.path} node={node} depth={1} currentSlug={currentSlug} expandedSet={expandedSet} onToggle={onToggle} />
-      ))}
+      {expandedSet.has(rootPath) && (
+        <>
+          {rootArticles.map((a) => (
+            <Link key={a.slug} href={`/articles/${a.slug}`}
+              className={`block px-3 py-1 text-xs rounded-lg transition-colors truncate ${a.slug === currentSlug ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium' : 'text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20'}`}
+              style={{ paddingLeft: '24px' }}
+            >
+              {a.title}
+            </Link>
+          ))}
+          {tree.map((node) => (
+            <NavNode key={node.path} node={node} depth={1} currentSlug={currentSlug} expandedSet={expandedSet} onToggle={onToggle} />
+          ))}
+        </>
+      )}
     </nav>
   )
 }

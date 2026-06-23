@@ -1,76 +1,37 @@
 [
   {
     "name": "Seline Blog",
-    "description": "基于 Next.js 的二次元风格个人博客",
+    "description": "基于 Next.js 的开源个人博客，支持 Markdown 文章、友链管理、项目展示",
     "url": "https://github.com/liluolinder/seline-blog",
     "platform": "GitHub",
-    "labels": [
-      "Next.js",
-      "Web"
-    ]
+    "labels": ["Next.js", "Blog", "Web"]
   },
   {
-    "name": "Linder Http",
-    "description": "一个基于仓颉语言开发的现代化 HTTP 客户端库,提供简洁优雅的 API 和强大的功能支持。",
-    "url": "https://gitcode.com/LiquidStudio/LinderHttp",
-    "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "Http"
-    ]
+    "name": "Seline UI",
+    "description": "一个轻量级的 React 组件库，提供美观且易用的 UI 组件",
+    "url": "https://github.com/example/seline-ui",
+    "platform": "GitHub",
+    "labels": ["React", "UI", "Web"]
   },
   {
-    "name": "Seline Download",
-    "description": "基于仓颉开发的高性能文件下载库，支持断点续传和多线程下载。",
-    "url": "https://gitcode.com/LiquidStudio/selineDownload",
+    "name": "Seline CLI",
+    "description": "快速初始化前端项目的命令行工具，支持多种模板",
+    "url": "https://gitcode.com/example/seline-cli",
     "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "Http",
-      "Download"
-    ]
+    "labels": ["CLI", "Node.js", "Tool"]
   },
   {
-    "name": "Seline WebDAV",
-    "description": "一个基于 Ignite HTTP 框架的 WebDAV 服务器库，使用仓颉（Cangjie）语言编写。",
-    "url": "https://gitcode.com/LiquidStudio/selineWebdav",
-    "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "Http",
-      "Webdav"
-    ]
+    "name": "Seline Note",
+    "description": "一个跨平台的云端笔记应用，支持 Markdown 编辑和实时同步",
+    "url": "https://github.com/example/seline-note",
+    "platform": "GitHub",
+    "labels": ["React", "Electron", "Productivity"]
   },
   {
-    "name": "ZlibraryAPI4CJ",
-    "description": "zlibrary请求API 仓颉版",
-    "url": "https://gitcode.com/LiquidStudio/zlibraryAPI4CJ",
+    "name": "Seline API",
+    "description": "高性能 RESTful API 框架，基于 Node.js 与 TypeScript 构建",
+    "url": "https://gitcode.com/example/seline-api",
     "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "Http",
-      "Ebook"
-    ]
-  },
-  {
-    "name": "Supabase4CJ",
-    "description": "仓颉 (Cangjie) 语言的 Supabase 客户端库，提供简洁易用的 API 来访问 Supabase 的认证、数据库和存储服务。",
-    "url": "https://gitcode.com/LiquidStudio/supabase4cj",
-    "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "DataBase"
-    ]
-  },
-  {
-    "name": "SelineRead-阅韵心读",
-    "description": "一个优雅的 Z-Library 第三方客户端，为鸿蒙系统用户带来极致的电子书阅读体验。",
-    "url": "https://gitcode.com/LiquidStudio/SelineRead",
-    "platform": "Gitcode",
-    "labels": [
-      "Cangjie",
-      "HarmonyOS",
-      "Ebook"
-    ]
+    "labels": ["Node.js", "API", "Framework"]
   }
 ]

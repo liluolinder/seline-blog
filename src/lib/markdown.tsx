@@ -4,6 +4,18 @@ import { useMemo, useEffect, useRef } from 'react'
 import { Marked, Renderer } from 'marked'
 import { markedHighlight } from 'marked-highlight'
 import hljs from 'highlight.js'
+import katex from 'katex'
+
+// 渲染 LaTeX 行内公式 $...$
+function renderInlineLatex(text: string): string {
+  return text.replace(/\$([^\$]+)\$/g, (_, formula) => {
+    try {
+      return katex.renderToString(formula, { throwOnError: false })
+    } catch {
+      return `$${formula}$`
+    }
+  })
+}
 
 const renderer = new Renderer()
 
@@ -17,14 +29,27 @@ function headingId(text: string): string {
 
 renderer.heading = function ({ text, depth }) {
   const id = headingId(text)
-  return `<h${depth} id="${id}" style="scroll-margin-top:100px">${text}</h${depth}>`
+  return `<h${depth} id="${id}" style="scroll-margin-top:100px">${renderInlineLatex(text)}</h${depth}>`
+}
+
+renderer.paragraph = function ({ text }) {
+  // 解析内联 Markdown（加粗、斜体、行内代码等），保留 $...$ 给 renderInlineLatex
+  const inlineHtml = marked.parseInline(text, { async: false }) as string
+
+  // 块级 LaTeX $$...$$
+  const blockMatch = text.match(/^\$\$([\s\S]+?)\$\$$/)
+  if (blockMatch) {
+    try {
+      return `<div class="katex-block my-6 overflow-x-auto">${katex.renderToString(blockMatch[1].trim(), { displayMode: true, throwOnError: false })}</div>`
+    } catch {
+      return `<p>${inlineHtml}</p>`
+    }
+  }
+  return `<p>${renderInlineLatex(inlineHtml)}</p>`
 }
 
 renderer.code = function ({ text, lang, escaped }) {
   const langClass = lang ? ` class="hljs language-${lang}"` : ' class="hljs"'
-  const highlighted = lang && hljs.getLanguage(lang)
-    ? hljs.highlight(text, { language: lang }).value
-    : text
 
   return `<div class="code-block-wrapper relative my-4 rounded-xl shadow-lg overflow-hidden bg-gray-900 dark:bg-gray-950">
   <div class="flex items-center justify-between px-4 py-2.5 bg-gray-800/80 dark:bg-gray-900/80 border-b border-gray-700/50">
@@ -43,7 +68,7 @@ renderer.code = function ({ text, lang, escaped }) {
       </button>
     </div>
   </div>
-  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code${langClass}>${highlighted}</code></pre>
+  <pre class="!m-0 !rounded-none !border-0 !shadow-none"><code${langClass}>${text}</code></pre>
 </div>`
 }
 
