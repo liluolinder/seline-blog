@@ -8,9 +8,41 @@ import type { BgMode } from '@/lib/background-context'
 export function BackgroundToggle() {
   const { mode, currentIndex, nextImage, prevImage, setMode, opacity, setOpacity, blur, setBlur } = useBackground()
   const constraintsRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [panelStyle, setPanelStyle] = useState<React.CSSProperties>({})
   const carouselRef = useRef<HTMLDivElement>(null)
   const dragCountRef = useRef(0)
+
+  const openPanel = () => {
+    if (dragCountRef.current > 0) return
+    const btn = buttonRef.current
+    if (!btn) { setIsOpen(true); return }
+
+    const rect = btn.getBoundingClientRect()
+    const panelW = 320
+    const gap = 8
+    const vw = window.innerWidth
+
+    // 水平：优先在按钮右侧展开
+    let left = rect.right + gap
+    if (left + panelW > vw - gap) {
+      left = Math.max(gap, vw - panelW - gap)
+    }
+
+    // 垂直：上方空间够就面板底部对齐按钮顶部，否则面板顶部对齐按钮底部
+    const spaceAbove = rect.top
+    const spaceBelow = window.innerHeight - rect.bottom
+
+    if (spaceAbove > 300) {
+      // 上方够 → 面板在按钮上方（bottom 定位）
+      setPanelStyle({ position: 'fixed', left, bottom: window.innerHeight - rect.top + gap })
+    } else {
+      // 下方够 → 面板在按钮下方（top 定位）
+      setPanelStyle({ position: 'fixed', left, top: rect.bottom + gap })
+    }
+    setIsOpen(true)
+  }
 
   const modes: { key: BgMode; label: string }[] = [
     { key: 'none', label: '无' },
@@ -53,6 +85,7 @@ export function BackgroundToggle() {
     <>
       <div ref={constraintsRef} className="fixed inset-0 pointer-events-none z-40" />
       <motion.div
+        ref={buttonRef}
         drag
         dragConstraints={constraintsRef}
         dragElastic={0.1}
@@ -62,10 +95,7 @@ export function BackgroundToggle() {
         className="fixed bottom-6 left-6 z-50 flex items-center gap-1 px-2 py-1.5 rounded-full bg-white/40 dark:bg-gray-800/50 backdrop-blur-xl border border-white/50 dark:border-gray-700/40 shadow-lg cursor-grab active:cursor-grabbing select-none"
       >
         <button
-          onClick={() => {
-            if (dragCountRef.current > 0) return
-            setIsOpen(true)
-          }}
+          onClick={openPanel}
           className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white/40 dark:hover:bg-white/10 transition-colors text-lg"
           title="背景设置"
         >
@@ -82,7 +112,8 @@ export function BackgroundToggle() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="fixed bottom-20 left-6 z-50 w-80 liquid-glass rounded-2xl p-5 shadow-xl backdrop-blur-2xl"
+              className="z-50 w-80 liquid-glass rounded-2xl p-5 shadow-xl backdrop-blur-2xl"
+              style={panelStyle}
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider mb-5">背景设置</h3>
