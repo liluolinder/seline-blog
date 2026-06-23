@@ -258,9 +258,21 @@ export function MobileArticlePanel({
                 </span>
                 <span className="text-[10px] text-gray-400">{treeArts.length}</span>
               </button>
-              {expandedSet.has(rootColPath) && tree.children.map((node) => (
-                <NavNode key={node.path} node={node} depth={1} currentSlug={currentSlug} expandedSet={expandedSet} onToggle={onToggle} />
-              ))}
+              {expandedSet.has(rootColPath) && (
+                <>
+                  {tree.rootArticles.map((a) => (
+                    <Link key={a.slug} href={`/articles/${a.slug}`}
+                      className={`block px-3 py-1 text-xs rounded-lg transition-colors truncate ${a.slug === currentSlug ? 'bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 font-medium' : 'text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-900/20'}`}
+                      style={{ paddingLeft: '24px' }}
+                    >
+                      {a.title}
+                    </Link>
+                  ))}
+                  {tree.children.map((node) => (
+                    <NavNode key={node.path} node={node} depth={1} currentSlug={currentSlug} expandedSet={expandedSet} onToggle={onToggle} />
+                  ))}
+                </>
+              )}
             </nav>
           </div>
         </div>
