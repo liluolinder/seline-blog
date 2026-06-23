@@ -31,6 +31,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git commit -m "deploy: $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git remote add origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/liluolinder/liluolinder.github.io.git
+          git remote add origin https://liluolinder:${{ secrets.DEPLOY_TOKEN }}@github.com/liluolinder/liluolinder.github.io.git
           git branch -M main
           git push -f origin main
