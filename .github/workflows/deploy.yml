@@ -32,23 +32,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Determine base path
+        run: |
+          # 用户/组织站 (username.github.io) → 无前缀
+          # 项目站 (username/repo) → 前缀 /repo
+          REPO="${{ github.repository }}"
+          if echo "$REPO" | grep -q '\.github\.io$'; then
+            echo "用户/组织站，无需前缀"
+            echo "NEXT_PUBLIC_BASE_PATH=" >> $GITHUB_ENV
+          else
+            PREFIX="/${{ github.event.repository.name }}"
+            echo "项目站，前缀: $PREFIX"
+            echo "NEXT_PUBLIC_BASE_PATH=$PREFIX" >> $GITHUB_ENV
+          fi
+
       - name: Build
         run: npm run build
 
-      - name: Fix asset paths for project pages
+      - name: Fix raw image paths in HTML
         run: |
-          # 用户/组织站 (liluolinder.github.io) → 无前缀，不需处理
-          # 项目站 (liluolinder/seline-blog) → 给 out/ 中所有 /images/ 加上仓库名前缀
-          REPO="${{ github.repository }}"
-          if echo "$REPO" | grep -q '\.github\.io$'; then
-            echo "用户/组织站，无需路径修正"
-          else
-            PREFIX="/${{ github.event.repository.name }}"
-            echo "项目站，添加前缀: $PREFIX"
+          PREFIX="${NEXT_PUBLIC_BASE_PATH}"
+          if [ -n "$PREFIX" ]; then
             find out -name '*.html' -exec sed -i "s|src=\"/images/|src=\"${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|href=\"/images/|href=\"${PREFIX}/images/|g" {} +
-            echo "完成"
+            echo "图片路径修正完成"
           fi
 
       - name: Setup Pages
