@@ -24,7 +24,7 @@ export default function HomePage() {
           <FadeIn>
             <div className="liquid-glass rounded-3xl p-10 md:p-14 text-center">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center mx-auto mb-6 shadow-xl ring-4 ring-white/60 dark:ring-gray-800/60 overflow-hidden">
-                <img src="/seline-blog/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
+                <img src="/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
               </div>
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-400 bg-clip-text text-transparent mb-4 tracking-tight leading-[1.2] pb-2">
                 Seline Blog
@@ -62,7 +62,7 @@ export default function HomePage() {
               <Card hover={false} className="!p-5">
                 <div className="flex flex-col items-center">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center text-white text-3xl shadow-lg ring-4 ring-white/60 dark:ring-gray-800/60 overflow-hidden">
-                    <img src="/seline-blog/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
+                    <img src="/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
                   </div>
                   <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-3">Seline</h2>
                   <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">记录技术、生活和思考</p>
@@ -115,7 +115,7 @@ export default function HomePage() {
         {/* 移动端个人信息（小屏） */}
         <div className="lg:hidden pt-8 pb-4 text-center">
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center text-white text-2xl shadow-lg overflow-hidden mx-auto">
-            <img src="/seline-blog/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
+            <img src="/images/avatar.png" alt="Seline" className="w-full h-full object-cover" />
           </div>
           <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200 mt-2">Seline</h2>
           <p className="text-xs text-gray-400 dark:text-gray-500">记录技术、生活和思考</p>

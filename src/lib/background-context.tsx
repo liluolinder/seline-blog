@@ -15,8 +15,8 @@ interface BackgroundState {
 }
 
 const images = [
-  { light: '/seline-blog/images/bg1.png', dark: '/seline-blog/images/bg2.png' },
-  { light: '/seline-blog/images/bg2.png', dark: '/seline-blog/images/bg1.png' },
+  { light: '/images/bg1.png', dark: '/images/bg2.png' },
+  { light: '/images/bg2.png', dark: '/images/bg1.png' },
 ]
 
 const BackgroundContext = createContext<BackgroundState | null>(null)
