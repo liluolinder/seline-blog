@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Seline Blog",
+    "description": "基于 Next.js 的二次元风格个人博客",
+    "url": "https://github.com/your-username/seline-blog",
+    "github": "https://github.com/your-username/seline-blog",
+    "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"]
+  }
+]

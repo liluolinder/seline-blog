@@ -1,26 +1,420 @@
 @import "tailwindcss";
+@import "highlight.js/styles/github-dark.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('/fonts/HarmonyOS_Sans_Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'HarmonyOS Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+:root {
+  --background: #f0f9ff;
+  --foreground: #1e293b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #e2e8f0;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* ============================================================
+   液态玻璃 (Liquid Glass) 效果
+   ============================================================ */
+
+/* 基础液态玻璃容器 — 只做视觉外观，不影响定位 */
+.liquid-glass {
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  border-right-color: rgba(147, 197, 253, 0.15);
+  border-bottom-color: rgba(147, 197, 253, 0.12);
+  background: linear-gradient(
+    135deg,
+    rgba(219, 234, 254, 0.80) 0%,
+    rgba(255, 255, 255, 0.60) 40%,
+    rgba(186, 230, 253, 0.70) 70%,
+    rgba(255, 255, 255, 0.50) 100%
+  );
+  backdrop-filter: blur(40px) saturate(220%);
+  -webkit-backdrop-filter: blur(40px) saturate(220%);
+  box-shadow:
+    0 12px 48px rgba(59, 130, 246, 0.10),
+    0 4px 16px rgba(59, 130, 246, 0.06),
+    0 2px 8px rgba(59, 130, 246, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.60),
+    inset 0 -1px 0 rgba(59, 130, 246, 0.04);
+}
+
+.dark .liquid-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 64, 175, 0.60) 0%,
+    rgba(15, 23, 42, 0.75) 40%,
+    rgba(30, 64, 175, 0.50) 70%,
+    rgba(15, 23, 42, 0.80) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-right-color: rgba(96, 165, 250, 0.08);
+  border-bottom-color: rgba(96, 165, 250, 0.06);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.20),
+    inset 0 1px 0 rgba(96, 165, 250, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* 顶栏专用 — 更高不透明度，滚动时不透底 */
+.liquid-glass-header {
+  border: 1px solid rgba(147, 197, 253, 0.40);
+  border-right-color: rgba(147, 197, 253, 0.18);
+  border-bottom-color: rgba(147, 197, 253, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(219, 234, 254, 0.85) 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(186, 230, 253, 0.75) 100%
+  );
+  backdrop-filter: blur(36px) saturate(220%);
+  -webkit-backdrop-filter: blur(36px) saturate(220%);
+  box-shadow:
+    0 8px 32px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70);
+}
+
+.dark .liquid-glass-header {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 64, 175, 0.60) 0%,
+    rgba(15, 23, 42, 0.75) 50%,
+    rgba(30, 64, 175, 0.55) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.20);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.40),
+    inset 0 1px 0 rgba(96, 165, 250, 0.10);
+}
+
+/* 液态玻璃卡片变体 */
+.liquid-glass-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(219, 234, 254, 0.82) 0%,
+    rgba(255, 255, 255, 0.60) 50%,
+    rgba(186, 230, 253, 0.72) 100%
+  );
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid rgba(147, 197, 253, 0.35);
+  border-right-color: rgba(147, 197, 253, 0.15);
+  border-bottom-color: rgba(147, 197, 253, 0.12);
+  box-shadow:
+    0 8px 28px rgba(59, 130, 246, 0.08),
+    0 3px 12px rgba(59, 130, 246, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.60);
+}
+
+.dark .liquid-glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 64, 175, 0.55) 0%,
+    rgba(15, 23, 42, 0.65) 50%,
+    rgba(30, 64, 175, 0.45) 100%
+  );
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.30),
+    0 3px 12px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(96, 165, 250, 0.06);
+}
+
+/* ============================================================
+   Markdown 内容样式
+   ============================================================ */
+.markdown-body h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #2563eb;
+}
+.dark .markdown-body h1 { color: #60a5fa; }
+
+.markdown-body h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #3b82f6;
+}
+.dark .markdown-body h2 { color: #93c5fd; }
+
+.markdown-body h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+.dark .markdown-body h3 { color: #e2e8f0; }
+
+.markdown-body p {
+  margin: 0.75rem 0;
+  line-height: 1.75;
+  color: #334155;
+}
+.dark .markdown-body p { color: #cbd5e1; }
+
+.markdown-body a {
+  color: #3b82f6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.markdown-body a:hover { color: #2563eb; }
+.dark .markdown-body a { color: #60a5fa; }
+.dark .markdown-body a:hover { color: #93c5fd; }
+
+.markdown-body ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+  color: #334155;
+}
+.dark .markdown-body ul { color: #cbd5e1; }
+
+.markdown-body ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+  color: #334155;
+}
+.dark .markdown-body ol { color: #cbd5e1; }
+
+.markdown-body li {
+  margin: 0.25rem 0;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid #60a5fa;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background: #eff6ff;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #475569;
+}
+.dark .markdown-body blockquote {
+  background: rgba(30, 64, 175, 0.3);
+  color: #94a3b8;
+}
+
+.markdown-body code {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: var(--font-mono), monospace;
+}
+.dark .markdown-body code {
+  background: rgba(30, 64, 175, 0.5);
+  color: #bfdbfe;
+}
+
+.markdown-body pre {
+  background: #111827;
+  color: #f3f4f6;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.dark .markdown-body pre {
+  background: #030712;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: #e2e8f0;
+}
+
+/* 代码块滚动条 — 细版 */
+.code-block-wrapper pre::-webkit-scrollbar {
+  height: 4px;
+}
+.code-block-wrapper pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.markdown-body img {
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-body hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+.dark .markdown-body hr { border-color: #334155; }
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.dark .markdown-body table { background: #1e293b; }
+
+.markdown-body th {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 1rem;
+  background: #f8fafc;
+  font-weight: 600;
+  color: #334155;
+}
+.dark .markdown-body th {
+  border-color: #334155;
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+.markdown-body td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 1rem;
+  color: #475569;
+}
+.dark .markdown-body td {
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.markdown-body strong {
+  font-weight: 700;
+}
+
+.markdown-body em {
+  font-style: italic;
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #93c5fd;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #1e40af;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+  }
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection {
+  background: #93c5fd;
+  color: #1e293b;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: #1e40af;
+    color: #e2e8f0;
+  }
+}
+
+/* ============================================================
+   Line clamp utilities
+   ============================================================ */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   Smooth transitions
+   ============================================================ */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* ============================================================
+   Focus styles
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
