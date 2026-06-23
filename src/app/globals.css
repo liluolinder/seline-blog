@@ -418,3 +418,22 @@ body {
   outline-offset: 2px;
   border-radius: 8px;
 }
+
+/* 移动端性能优化：降低毛玻璃模糊强度 */
+@media (max-width: 768px) {
+  .liquid-glass,
+  .liquid-glass-card,
+  .liquid-glass-header {
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+  }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

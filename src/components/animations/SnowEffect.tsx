@@ -21,7 +21,9 @@ export function SnowEffect() {
     const container = containerRef.current
     if (!container) return
 
-    const count = 200
+    // 移动端减少雪花数量
+    const isMobile = window.innerWidth < 768
+    const count = isMobile ? 30 : 80
     const flakes: Snowflake[] = []
 
     for (let i = 0; i < count; i++) {
