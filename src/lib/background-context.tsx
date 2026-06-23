@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode, useRef } from 'react'
+import { assetUrl } from '@/lib/path'
 
 export type BgMode = 'single' | 'carousel'
 
@@ -16,8 +17,8 @@ interface BackgroundState {
 }
 
 const images = [
-  { light: '/images/bg1.webp', dark: '/images/bg2.webp' },
-  { light: '/images/bg2.webp', dark: '/images/bg1.webp' },
+  { light: assetUrl('/images/bg1.webp'), dark: assetUrl('/images/bg2.webp') },
+  { light: assetUrl('/images/bg2.webp'), dark: assetUrl('/images/bg1.webp') },
 ]
 
 const BackgroundContext = createContext<BackgroundState | null>(null)

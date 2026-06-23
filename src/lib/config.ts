@@ -2,12 +2,12 @@ export const siteConfig = {
   name: 'Seline Blog',
   title: 'Seline Blog',
   description: '记录技术、生活和思考的个人空间',
-  url: 'https://your-username.github.io',
-  basePath: '',
+  url: 'https://liluolinder.github.io',
+  basePath: '/seline-blog',
   author: 'Seline',
   avatar: '/images/avatar.webp',
   social: {
-    github: 'https://github.com/your-username',
+    github: 'https://github.com/liluolinder',
     twitter: 'https://twitter.com/your-username',
   },
   nav: [

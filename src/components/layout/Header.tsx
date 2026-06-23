@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { siteConfig } from '@/lib/config'
+import { assetUrl } from '@/lib/path'
 import { useState } from 'react'
 
 export function Header() {
@@ -19,7 +20,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <span className="w-auto h-9 rounded-lg overflow-hidden flex-shrink-0">
-            <img src="/images/logo.webp" alt={siteConfig.name} className="h-full w-auto object-contain" />
+            <img src={assetUrl('/images/logo.webp')} alt={siteConfig.name} className="h-full w-auto object-contain" />
           </span>
           <span className="text-base font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
             {siteConfig.name}
