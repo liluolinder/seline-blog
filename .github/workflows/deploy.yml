@@ -43,10 +43,13 @@ jobs:
           PREFIX="$NEXT_PUBLIC_BASE_PATH"
           if [ -n "$PREFIX" ]; then
             echo "添加前缀: $PREFIX"
-            # HTML 中的 img src / link href
+            # 1) HTML 属性: src="/images/  href="/images/
             find out -name '*.html' -exec sed -i "s|src=\"/images/|src=\"${PREFIX}/images/|g" {} +
             find out -name '*.html' -exec sed -i "s|href=\"/images/|href=\"${PREFIX}/images/|g" {} +
-            # CSS/HTML 中的 url()（单引号、双引号、无引号）
+            # 2) React 水合 JSON: "src":"/images/  "href":"/images/
+            find out -name '*.html' -exec sed -i 's|"src":"/images/|"src":"'${PREFIX}'/images/|g' {} +
+            find out -name '*.html' -exec sed -i 's|"href":"/images/|"href":"'${PREFIX}'/images/|g' {} +
+            # 3) CSS/HTML url()（单引号、双引号、无引号）
             find out \( -name '*.html' -o -name '*.css' \) \
               -exec sed -i "s|url('/images/|url('${PREFIX}/images/|g" {} + \
               -exec sed -i 's|url("/images/|url("'${PREFIX}'/images/|g' {} + \
