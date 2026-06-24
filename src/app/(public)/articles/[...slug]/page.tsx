@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }: Props) {
           (a) => a.collection === rootColPath || (a.collection && a.collection.startsWith(rootColPath + '/'))
         )
         return (
-          <aside className="fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden lg:block z-10">
+          <aside className="fixed left-6 top-1/2 -translate-y-1/2 w-[240px] hidden xl:block z-10">
             <div className="liquid-glass rounded-2xl p-5 space-y-3 max-h-[70vh] overflow-y-auto">
               <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">合集</h3>
               <div className="w-full h-px bg-blue-100/50 dark:bg-blue-900/30" />
@@ -60,7 +60,7 @@ export default async function ArticlePage({ params }: Props) {
         )
       })()}
 
-      <div className="lg:pl-[320px] xl:pr-[280px] pt-28 pb-16 px-4">
+      <div className="xl:pl-[320px] xl:pr-[260px] pt-28 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <Link href="/articles" className="inline-flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 mb-6 transition-colors">← 返回文章列表</Link>
             <div className="mb-8">

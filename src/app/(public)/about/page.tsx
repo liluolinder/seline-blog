@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config'
 export default function AboutPage() {
   return (
     <div className="min-h-screen pb-16">
-      <div className="lg:pl-[320px] xl:pr-[320px] pt-28 pb-16 px-4">
+      <div className="pt-28 pb-16 px-4">
         <div className="max-w-3xl mx-auto">
           <FadeIn>
             <div className="text-center mb-12">

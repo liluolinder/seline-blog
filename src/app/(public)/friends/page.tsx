@@ -7,7 +7,7 @@ export default function FriendsPage() {
 
   return (
     <div className="min-h-screen pb-16">
-      <div className="lg:pl-[320px] xl:pr-[320px] pt-28 pb-16 px-4">
+      <div className="pt-28 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <FadeIn>
             <div className="mb-10">

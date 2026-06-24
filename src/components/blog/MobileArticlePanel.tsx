@@ -188,7 +188,7 @@ export function MobileArticlePanel({
   }
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       {/* ─── 浮动目录 ─── */}
       {headings.length > 0 && (
         <>
